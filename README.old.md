@@ -1,3 +1,0 @@
-# redux-pill
-
-addddddd
