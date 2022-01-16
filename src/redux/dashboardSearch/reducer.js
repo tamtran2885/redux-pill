@@ -1,4 +1,4 @@
-import { SEARCH_PROPERTY, FETCH_PROPERTIES, FETCH_PROPERTY } from "./types";
+import { SEARCH_PROPERTY, SET_PROPERTIES_DATA } from "./types";
 import initialState from "./state";
 
 const dashboardSearchReducer = (state = initialState, action) => {
@@ -7,19 +7,11 @@ const dashboardSearchReducer = (state = initialState, action) => {
       return {
         ...state,
         text: action.payload,
-        loading: false,
       };
-    case FETCH_PROPERTIES:
+    case SET_PROPERTIES_DATA:
       return {
         ...state,
-        properties: action.payload,
-        loading: false,
-      };
-    case FETCH_PROPERTY:
-      return {
-        ...state,
-        property: action.payload,
-        loading: false,
+        properties: action.payload.data,
       };
     default:
       return state;

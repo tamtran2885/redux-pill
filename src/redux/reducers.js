@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+import counterReducer from "./counter/reducer";
 import dashboardSearchReducer from "./dashboardSearch/reducer";
 
-const CombinedReducers = combineReducers({
+const reducers = combineReducers({
   dashboardSearch: dashboardSearchReducer,
+  counter: counterReducer,
 });
 
-export default CombinedReducers;
+export default reducers;

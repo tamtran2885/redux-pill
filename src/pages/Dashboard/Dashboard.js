@@ -11,6 +11,7 @@ import BathRoom from "../../components/BathRoom";
 import Condition from "../../components/Condition";
 import PriceRange from "../../components/PriceRange";
 import OtherFilter from "../../components/OtherFilter";
+import ProductListing from "../../components/ProductListing";
 
 const Dashboard = () => {
   return (
@@ -68,6 +69,7 @@ const Dashboard = () => {
           </Row>
         </Container>
       </Row>
+      <ProductListing />
     </Container>
   );
 };

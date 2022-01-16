@@ -1,31 +1,24 @@
-import { SEARCH_PROPERTY, FETCH_PROPERTIES, FETCH_PROPERTY } from "./types";
-import axios from "axios";
+import { SEARCH_PROPERTY, SET_PROPERTIES_DATA } from "./types";
+
+import getProperties from "../../services/fetchProperties";
 
 export const searchProperty = (text) => ({
   type: SEARCH_PROPERTY,
   payload: text,
 });
 
-export const fetchProperties = (text) => (dispatch) => {
-  axios
-    .get(`http://localhost:4000/properties?s=${text}`)
-    .then((response) =>
-      dispatch({
-        type: FETCH_PROPERTIES,
-        payload: response.data,
-      })
-    )
-    .catch((error) => console.error(error));
-};
+export const setPropertiesData = (response) => ({
+  type: SET_PROPERTIES_DATA,
+  payload: response,
+});
 
-export const fetchProperty = (id) => (dispatch) => {
-  axios
-    .get(`http://localhost:4000/properties?id=${id}`)
-    .then((response) =>
-      dispatch({
-        type: FETCH_PROPERTY,
-        payload: response.data,
-      })
-    )
-    .catch((error) => console.log(error));
+export const fetchProperty = (text) => {
+  return async (dispatch) => {
+    try {
+      const response = await getProperties(text);
+      dispatch(setPropertiesData(response));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 };
