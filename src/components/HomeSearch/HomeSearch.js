@@ -1,14 +1,21 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Form, FormControl } from "react-bootstrap";
 import { searchProperty, fetchProperty } from "../../redux/homeSearch/action";
 
 const HomeSearch = ({ handleChange, text }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchProperty(text));
+    goToDashboard();
+  };
+
+  const goToDashboard = () => {
+    navigate("./dashboard");
   };
 
   return (
@@ -18,7 +25,9 @@ const HomeSearch = ({ handleChange, text }) => {
         placeholder="Search"
         className="me-2"
         aria-label="Search"
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e) => {
+          handleChange(e.target.value);
+        }}
       />
     </Form>
   );

@@ -8,7 +8,12 @@ const initialState = {
   condition: "",
   priceRange: "",
   publicationDate: "",
-  others: "",
+  pet_allowed: false,
+  lift: false,
+  garden: false,
+  air_conditioning: false,
+  swimming_pool: false,
+  terrace: false,
 };
 
 export default initialState;

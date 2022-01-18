@@ -4,7 +4,6 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import IntroCard from "../../components/IntroCard";
 import HomeSearch from "../../components/HomeSearch";
-import ProductListing from "../../components/ProductListing";
 
 const Home = () => {
   return (
@@ -17,11 +16,6 @@ const Home = () => {
           <HomeSearch />
         </Col>
       </Row>
-      {/* <Row style={{ marginTop: "2rem" }}>
-        <Col>
-          <ProductListing />
-        </Col>
-      </Row> */}
     </Container>
   );
 };

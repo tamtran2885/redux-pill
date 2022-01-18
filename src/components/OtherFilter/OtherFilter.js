@@ -1,30 +1,150 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
+import { connect, useDispatch } from "react-redux";
+import {
+  fetchProperty,
+  changeTerrace,
+  changeSwimmingPool,
+  changePetAllowed,
+  changeLift,
+  changeAirConditioning,
+  changeGarden,
+} from "../../redux/homeSearch/action";
 
-export default function OtherFilter() {
-  const typeOfFilter = [
-    { label: "Pet Allowed", value: "false" },
-    { label: "Lift", value: "false" },
-    { label: "Air Conditioning", value: "false" },
-    { label: "Garden", value: "false" },
-    { label: "Terrace", value: "false" },
-    { label: "Swimming pool", value: "false" },
-  ];
+const OtherFilter = ({ text, equipment, homeList, conditionList }) => {
+  const dispatch = useDispatch();
+
+  const [isCheckedTerrace, setIsCheckedTerrace] = useState(false);
+  const [isCheckedSwimmingPool, setIsCheckedSwimmingPool] = useState(false);
+  const [isCheckedPetAllowed, setIsCheckedPetAllowed] = useState(false);
+  const [isCheckedAirConditioning, setIsCheckedAirConditioning] =
+    useState(false);
+  const [isCheckedGarden, setIsCheckedGarden] = useState(false);
+  const [isCheckedLift, setIsCheckedLift] = useState(false);
+
+  const handleOnChangeTerrace = () => {
+    setIsCheckedTerrace(!isCheckedTerrace);
+  };
+
+  const handleOnChangeSwimmingPool = () => {
+    setIsCheckedSwimmingPool(!isCheckedSwimmingPool);
+  };
+
+  const handleOnChangePetAllowed = () => {
+    setIsCheckedPetAllowed(!isCheckedPetAllowed);
+  };
+
+  const handleOnChangeAirConditioning = () => {
+    setIsCheckedAirConditioning(!isCheckedAirConditioning);
+  };
+
+  const handleOnChangeLift = () => {
+    setIsCheckedLift(!isCheckedLift);
+  };
+
+  const handleOnChangeGarden = () => {
+    setIsCheckedGarden(!isCheckedGarden);
+  };
+
+  useEffect(() => {
+    dispatch(
+      fetchProperty(
+        text,
+        equipment,
+        homeList,
+        conditionList,
+        isCheckedTerrace,
+        isCheckedPetAllowed,
+        isCheckedSwimmingPool,
+        isCheckedLift,
+        isCheckedAirConditioning,
+        isCheckedGarden
+      )
+    );
+    dispatch(changeTerrace(isCheckedTerrace));
+    dispatch(changeSwimmingPool(isCheckedSwimmingPool));
+    dispatch(changePetAllowed(isCheckedPetAllowed));
+    dispatch(changeLift(isCheckedLift));
+    dispatch(changeAirConditioning(isCheckedAirConditioning));
+    dispatch(changeGarden(isCheckedGarden));
+  }, [
+    homeList,
+    dispatch,
+    equipment,
+    text,
+    conditionList,
+    isCheckedTerrace,
+    isCheckedPetAllowed,
+    isCheckedSwimmingPool,
+    isCheckedLift,
+    isCheckedAirConditioning,
+    isCheckedGarden,
+  ]);
+
   return (
     <Form>
       <Form.Label htmlFor="TextInput">Other Filters</Form.Label>
       <div key="checkbox" className="mb-3">
-        {typeOfFilter.map((option) => (
-          <Form.Check
-            inline
-            label={option.label}
-            name="filterType"
-            type="checkbox"
-            id={option.label}
-            key={option.label}
-          />
-        ))}
+        <Form.Check
+          inline
+          label="Terrace"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedTerrace}
+          onChange={handleOnChangeTerrace}
+        />
+        <Form.Check
+          inline
+          label="Swimming pool"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedSwimmingPool}
+          onChange={handleOnChangeSwimmingPool}
+        />
+        <Form.Check
+          inline
+          label="Pet Allowed"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedPetAllowed}
+          onChange={handleOnChangePetAllowed}
+        />
+        <Form.Check
+          inline
+          label="Lift"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedLift}
+          onChange={handleOnChangeLift}
+        />
+        <Form.Check
+          inline
+          label="Air Conditioning"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedAirConditioning}
+          onChange={handleOnChangeAirConditioning}
+        />
+        <Form.Check
+          inline
+          label="Garden"
+          name="otherFilter"
+          type="checkbox"
+          checked={isCheckedGarden}
+          onChange={handleOnChangeGarden}
+        />
       </div>
     </Form>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  text: state.homeSearch.text,
+  equipment: state.homeSearch.text.equipment,
+  conditionList: state.homeSearch.condition,
+  homeList: state.homeSearch.homeList,
+});
+
+const reduxHoc = connect(mapStateToProps);
+
+export default reduxHoc(OtherFilter);
