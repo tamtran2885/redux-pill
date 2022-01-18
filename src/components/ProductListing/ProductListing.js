@@ -22,7 +22,7 @@ const ProductListing = ({ properties }) => {
           <strong>Characteristics</strong>
         </div>
         <div className="bg-light ms-auto">
-          <strong>Marked As Sold</strong>
+          <strong>Available</strong>
         </div>
         <div className="bg-light ms-auto">
           <strong>Remove</strong>
@@ -46,7 +46,8 @@ const ProductListing = ({ properties }) => {
 };
 
 const mapStateToProps = (state) => ({
-  properties: state.dashboardSearch.properties,
+  // properties: state.dashboardSearch.properties,
+  properties: state.homeSearch.properties,
 });
 
 const reduxHoc = connect(mapStateToProps);

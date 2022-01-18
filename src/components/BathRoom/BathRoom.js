@@ -3,6 +3,12 @@ import { Form } from "react-bootstrap";
 import { FaBath } from "react-icons/fa";
 
 export default function BathRoom() {
+  const typeOfBathRoom = [
+    { label: "One", value: "1" },
+    { label: "Two", value: "2" },
+    { label: "+2", value: "house" },
+  ];
+
   return (
     <Form>
       <Form.Label htmlFor="TextInput">
@@ -13,27 +19,16 @@ export default function BathRoom() {
       </Form.Label>
 
       <div key="checkbox" className="mb-3">
-        <Form.Check
-          inline
-          label="One"
-          name="bathroom"
-          type="checkbox"
-          id="bathroom"
-        />
-        <Form.Check
-          inline
-          label="Two"
-          name="bathroom"
-          type="checkbox"
-          id="bathroom"
-        />
-        <Form.Check
-          inline
-          label="More than 2+"
-          type="checkbox"
-          id="bathroom"
-          name="bathroom"
-        />
+        {typeOfBathRoom.map((option) => (
+          <Form.Check
+            inline
+            label={option.label}
+            name="bathRoomType"
+            type="checkbox"
+            id={option.value}
+            key={option.value}
+          />
+        ))}
       </div>
     </Form>
   );

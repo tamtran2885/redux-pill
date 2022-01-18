@@ -17,11 +17,11 @@ const Home = () => {
           <HomeSearch />
         </Col>
       </Row>
-      <Row style={{ marginTop: "2rem" }}>
+      {/* <Row style={{ marginTop: "2rem" }}>
         <Col>
           <ProductListing />
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import { SEARCH_PROPERTY, SET_PROPERTIES_DATA } from "./types";
 
-import getProperties from "../../services/fetchProperties";
+import getProperties from "../../services/getProperties";
 
 export const searchProperty = (text) => ({
   type: SEARCH_PROPERTY,

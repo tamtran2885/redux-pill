@@ -3,6 +3,13 @@ import { Form } from "react-bootstrap";
 import { FaBed } from "react-icons/fa";
 
 export default function BedRoom() {
+  const typeOfBedroom = [
+    { label: "0/Studio", value: "0" },
+    { label: "One", value: "1" },
+    { label: "Two", value: "2" },
+    { label: "Three", value: "3" },
+    { label: "+3", value: "3" },
+  ];
   return (
     <Form>
       <Form.Label htmlFor="TextInput">
@@ -12,41 +19,16 @@ export default function BedRoom() {
         </span>
       </Form.Label>
       <div key="checkbox" className="mb-3">
-        <Form.Check
-          inline
-          label="0/Studio"
-          name="bedroom"
-          type="checkbox"
-          id="bedroom"
-        />
-        <Form.Check
-          inline
-          label="One"
-          name="bedroom"
-          type="checkbox"
-          id="bedroom"
-        />
-        <Form.Check
-          inline
-          label="Two"
-          type="checkbox"
-          id="bedroom"
-          name="bedroom"
-        />
-        <Form.Check
-          inline
-          label="Three"
-          name="bedroom"
-          type="checkbox"
-          id="bedroom"
-        />
-        <Form.Check
-          inline
-          label="More than 3+"
-          name="otherFilter"
-          type="checkbox"
-          id="otherFilter"
-        />
+        {typeOfBedroom.map((option) => (
+          <Form.Check
+            inline
+            label={option.label}
+            name="bedroomType"
+            type="checkbox"
+            id={option.value}
+            key={option.value}
+          />
+        ))}
       </div>
     </Form>
   );

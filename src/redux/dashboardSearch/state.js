@@ -1,7 +1,14 @@
 const initialState = {
   text: "",
   properties: [],
-  property: [],
+  homeType: "",
+  bedroom: "",
+  bathroom: "",
+  equipment: "",
+  condition: "",
+  priceRange: "",
+  publicationDate: "",
+  others: "",
 };
 
 export default initialState;
