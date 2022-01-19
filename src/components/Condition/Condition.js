@@ -3,7 +3,19 @@ import { connect, useDispatch } from "react-redux";
 import { fetchProperty, changeCondition } from "../../redux/homeSearch/action";
 import { Form } from "react-bootstrap";
 
-const Condition = ({ text, equipment, homeList }) => {
+const Condition = ({
+  text,
+  equipment,
+  homeList,
+  bathRoomList,
+  bedRoomList,
+  isCheckedPetAllowed,
+  isCheckedLift,
+  isCheckedGarden,
+  isCheckedAirConditioning,
+  isCheckedSwimmingPool,
+  isCheckedTerrace,
+}) => {
   const dispatch = useDispatch();
 
   const typeOfCondition = [
@@ -26,9 +38,38 @@ const Condition = ({ text, equipment, homeList }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchProperty(text, equipment, homeList, conditionList));
+    dispatch(
+      fetchProperty(
+        text,
+        equipment,
+        homeList,
+        conditionList,
+        bathRoomList,
+        bedRoomList,
+        isCheckedPetAllowed,
+        isCheckedLift,
+        isCheckedGarden,
+        isCheckedAirConditioning,
+        isCheckedSwimmingPool,
+        isCheckedTerrace
+      )
+    );
     dispatch(changeCondition(conditionList));
-  }, [homeList, dispatch, equipment, text, conditionList]);
+  }, [
+    homeList,
+    dispatch,
+    equipment,
+    text,
+    conditionList,
+    bathRoomList,
+    bedRoomList,
+    isCheckedPetAllowed,
+    isCheckedLift,
+    isCheckedGarden,
+    isCheckedAirConditioning,
+    isCheckedSwimmingPool,
+    isCheckedTerrace,
+  ]);
 
   return (
     <Form>
@@ -56,6 +97,14 @@ const mapStateToProps = (state) => ({
   text: state.homeSearch.text,
   equipment: state.homeSearch.text.equipment,
   homeList: state.homeSearch.text.homeType,
+  bathRoomList: state.homeSearch.bathroom,
+  bedRoomList: state.homeSearch.bedroom,
+  isCheckedPetAllowed: state.homeSearch.pet_allowed,
+  isCheckedLift: state.homeSearch.lift,
+  isCheckedGarden: state.homeSearch.garden,
+  isCheckedAirConditioning: state.homeSearch.air_conditioning,
+  isCheckedSwimmingPool: state.homeSearch.swimming_pool,
+  isCheckedTerrace: state.homeSearch.terrace,
 });
 
 const reduxHoc = connect(mapStateToProps);

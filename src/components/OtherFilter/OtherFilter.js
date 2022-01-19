@@ -11,7 +11,14 @@ import {
   changeGarden,
 } from "../../redux/homeSearch/action";
 
-const OtherFilter = ({ text, equipment, homeList, conditionList }) => {
+const OtherFilter = ({
+  text,
+  equipment,
+  homeList,
+  conditionList,
+  bathRoomList,
+  bedRoomList,
+}) => {
   const dispatch = useDispatch();
 
   const [isCheckedTerrace, setIsCheckedTerrace] = useState(false);
@@ -53,6 +60,8 @@ const OtherFilter = ({ text, equipment, homeList, conditionList }) => {
         equipment,
         homeList,
         conditionList,
+        bathRoomList,
+        bedRoomList,
         isCheckedTerrace,
         isCheckedPetAllowed,
         isCheckedSwimmingPool,
@@ -73,6 +82,8 @@ const OtherFilter = ({ text, equipment, homeList, conditionList }) => {
     equipment,
     text,
     conditionList,
+    bathRoomList,
+    bedRoomList,
     isCheckedTerrace,
     isCheckedPetAllowed,
     isCheckedSwimmingPool,
@@ -142,7 +153,9 @@ const mapStateToProps = (state) => ({
   text: state.homeSearch.text,
   equipment: state.homeSearch.text.equipment,
   conditionList: state.homeSearch.condition,
-  homeList: state.homeSearch.homeList,
+  homeList: state.homeSearch.homeType,
+  bathRoomList: state.homeSearch.bathRoom,
+  bedRoomList: state.homeSearch.bedroom,
 });
 
 const reduxHoc = connect(mapStateToProps);

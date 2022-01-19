@@ -11,6 +11,7 @@ import {
   SET_AIR_CONDITIONING,
   SET_GARDEN,
   SET_BATH_ROOM,
+  SET_BED_ROOM,
 } from "./types";
 
 import getProperties from "../../services/getProperties";
@@ -36,7 +37,8 @@ export const fetchProperty = (
   isCheckedLift,
   isCheckedAirConditioning,
   isCheckedGarden,
-  bathRoomList
+  bathRoomList,
+  bedRoomList
 ) => {
   // console.log(homeList);
   return async (dispatch) => {
@@ -52,7 +54,8 @@ export const fetchProperty = (
         isCheckedLift,
         isCheckedAirConditioning,
         isCheckedGarden,
-        bathRoomList
+        bathRoomList,
+        bedRoomList
       );
       dispatch(setPropertiesData(response));
     } catch (err) {
@@ -109,4 +112,9 @@ export const changeGarden = (isCheckedGarden) => ({
 export const changeBathRoomType = (bathRoomList) => ({
   type: SET_BATH_ROOM,
   payload: bathRoomList,
+});
+
+export const changeBedRoomType = (bedRoomList) => ({
+  type: SET_BED_ROOM,
+  payload: bedRoomList,
 });

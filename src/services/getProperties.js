@@ -5,13 +5,14 @@ const getProperties = (
   equipment,
   homeList,
   conditionList,
+  bathRoomList,
+  bedRoomList,
   isCheckedTerrace,
   isCheckedPetAllowed,
   isCheckedSwimmingPool,
   isCheckedLift,
   isCheckedAirConditioning,
-  isCheckedGarden,
-  bathRoomList
+  isCheckedGarden
 ) =>
   new Promise((resolve) => {
     const allData = axios.get("http://localhost:3004/properties", {
@@ -20,6 +21,8 @@ const getProperties = (
         ...(equipment ? { equipment: equipment } : {}),
         ...(homeList ? { type: homeList } : {}),
         ...(conditionList ? { condition: conditionList } : {}),
+        ...(bathRoomList ? { bath: bathRoomList } : {}),
+        ...(bedRoomList ? { room: bedRoomList } : {}),
         ...(isCheckedTerrace ? { terrace: isCheckedTerrace } : {}),
         ...(isCheckedPetAllowed ? { pet: isCheckedPetAllowed } : {}),
         ...(isCheckedSwimmingPool
@@ -30,7 +33,6 @@ const getProperties = (
           ? { air_conditioning: isCheckedAirConditioning }
           : {}),
         ...(isCheckedGarden ? { garden: isCheckedGarden } : {}),
-        ...(bathRoomList ? { bath: bathRoomList } : {}),
       },
     });
     setTimeout(() => {

@@ -7,7 +7,19 @@ import {
 import { Form } from "react-bootstrap";
 import { FaBath } from "react-icons/fa";
 
-const BathRoom = ({ text, equipment, conditionList, homeList }) => {
+const BathRoom = ({
+  text,
+  equipment,
+  conditionList,
+  homeList,
+  bedRoomList,
+  isCheckedPetAllowed,
+  isCheckedLift,
+  isCheckedGarden,
+  isCheckedAirConditioning,
+  isCheckedSwimmingPool,
+  isCheckedTerrace,
+}) => {
   const dispatch = useDispatch();
 
   const typeOfBathRoom = [
@@ -17,7 +29,7 @@ const BathRoom = ({ text, equipment, conditionList, homeList }) => {
   ];
 
   const [bathRoomList, setBathRoomList] = useState([]);
-  console.log(bathRoomList);
+  // console.log(bathRoomList);
 
   const handleOnChange = (option) => {
     if (!bathRoomList.includes(option)) {
@@ -32,10 +44,37 @@ const BathRoom = ({ text, equipment, conditionList, homeList }) => {
 
   useEffect(() => {
     dispatch(
-      fetchProperty(text, equipment, homeList, conditionList, bathRoomList)
+      fetchProperty(
+        text,
+        equipment,
+        homeList,
+        conditionList,
+        bathRoomList,
+        bedRoomList,
+        isCheckedPetAllowed,
+        isCheckedLift,
+        isCheckedGarden,
+        isCheckedAirConditioning,
+        isCheckedSwimmingPool,
+        isCheckedTerrace
+      )
     );
     dispatch(changeBathRoomType(bathRoomList));
-  }, [homeList, dispatch, equipment, text, conditionList, bathRoomList]);
+  }, [
+    homeList,
+    dispatch,
+    equipment,
+    text,
+    conditionList,
+    bathRoomList,
+    bedRoomList,
+    isCheckedPetAllowed,
+    isCheckedLift,
+    isCheckedGarden,
+    isCheckedAirConditioning,
+    isCheckedSwimmingPool,
+    isCheckedTerrace,
+  ]);
 
   return (
     <Form>
@@ -69,7 +108,14 @@ const mapStateToProps = (state) => ({
   text: state.homeSearch.text,
   equipment: state.homeSearch.text.equipment,
   conditionList: state.homeSearch.condition,
-  homeList: state.homeSearch.homeList,
+  homeList: state.homeSearch.homeType,
+  isCheckedPetAllowed: state.homeSearch.pet_allowed,
+  isCheckedLift: state.homeSearch.lift,
+  isCheckedGarden: state.homeSearch.garden,
+  isCheckedAirConditioning: state.homeSearch.air_conditioning,
+  isCheckedSwimmingPool: state.homeSearch.swimming_pool,
+  isCheckedTerrace: state.homeSearch.terrace,
+  bedRoomList: state.homeSearch.bedroom,
 });
 
 const reduxHoc = connect(mapStateToProps);

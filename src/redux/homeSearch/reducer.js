@@ -11,6 +11,7 @@ import {
   SET_AIR_CONDITIONING,
   SET_GARDEN,
   SET_BATH_ROOM,
+  SET_BED_ROOM,
 } from "./types";
 import initialState from "./state";
 
@@ -75,6 +76,11 @@ const homeSearchReducer = (state = initialState, action) => {
       return {
         ...state,
         bathroom: action.payload,
+      };
+    case SET_BED_ROOM:
+      return {
+        ...state,
+        bedroom: action.payload,
       };
     default:
       return state;
